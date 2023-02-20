@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New</h2>
+
+<a class="navlink" style="color:green" ; href="/Category/List">Go Back To List </a>
+
+<form action="/Category/Create" method="POST">
+
+    <div>
+        <label>Last Name:</label> <input type="text" name="CategoryName" />
+    </div>
+ 
+    <div>
+        <input type="submit" value="Add Category" />
+
+    </div>
+</form>

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<NurseryApplication1.Models.CategoryDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+<a href="/Category/New">New Category</a>
+@foreach (var category in Model)
+{
+   <h2><a href="/Category/Details/@category.CategoryId">@category.CategoryName</a></h2>
+
+
+}

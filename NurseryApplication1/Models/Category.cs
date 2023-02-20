@@ -12,4 +12,12 @@ namespace NurseryApplication1.Models
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
     }
+
+    public class CategoryDto
+    {
+        public int CategoryId { get; set; }
+        public string CategoryName { get; set; }
+
+       
+    }
 }
