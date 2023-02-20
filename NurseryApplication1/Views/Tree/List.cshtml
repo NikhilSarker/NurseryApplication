@@ -1,0 +1,17 @@
+﻿@model IEnumerable<NurseryApplication1.Models.TreeDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+<a href="/Tree/New">New Tree</a>
+@foreach (var tree in Model)
+{
+    <h2><a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a></h2>
+    <div>Height: @tree.TreeHeight Inches</div>
+    <div>Category: @tree.CategoryName</div>
+
+
+}

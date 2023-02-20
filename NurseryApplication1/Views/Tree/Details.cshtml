@@ -1,0 +1,18 @@
+﻿
+@model NurseryApplication1.Models.TreeDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+
+<nav>
+    <a class="navlink" style="color:green" ; href="/Tree/Edit/@Model.TreeId">Update </a>
+    <a class="dellink" style="color:red;" href="/Tree/DeleteConfirm/@Model.TreeId">Delete</a>
+</nav>
+
+<a href="/Tree/List">Go back to list</a>
+<h2>@Model.TreeName</h2>
+<div>Height: @Model.TreeHeight inches</div>
+<div>Categories: @Model.CategoryName</div>

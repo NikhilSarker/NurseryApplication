@@ -1,0 +1,16 @@
+﻿@model IEnumerable<NurseryApplication1.Models.CaretakerDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+<a href="/Caretaker/New">New Caretaker</a>
+@foreach (var caretaker in Model)
+{
+    <h2><a href="/Caretaker/Details/@caretaker.CaretakerId">@caretaker.CaretakerLastName, @caretaker.CaretakerFirstName</a></h2>
+
+
+
+}

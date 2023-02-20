@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>New</h2>
+
+
+<a class="navlink" style="color:green" ; href="/Caretaker/List">Go Back To List </a>
+
+<form action="/Caretaker/Create" method="POST">
+
+    <div>
+        <label>Last Name:</label> <input type="text" name="CaretakerLastName" />
+    </div>
+    <div>
+        <label>First Name:</label> <input type="text" name="CaretakerFirstName" />
+    </div>
+
+
+    <div>
+        <input type="submit" value="Add Caretaker" />
+
+    </div>
+</form>

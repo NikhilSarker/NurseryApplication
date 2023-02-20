@@ -1,0 +1,17 @@
+﻿@model NurseryApplication1.Models.TreeDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<h2>Are you sure you want to delete this Tree?</h2>
+<a href="/Tree/List">Cancel</a>
+<h2>@Model.TreeName</h2>
+<div>Height: @Model.TreeHeight inches</div>
+<div>Categories: @Model.CategoryName</div>
+<form action="/Tree/Delete/@Model.TreeId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
+

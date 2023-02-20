@@ -1,0 +1,23 @@
+﻿@model NurseryApplication1.Models.CaretakerDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<a class="navlink" style="color:green" ; href="/Caretaker/List">Go Back To List </a>
+
+<form action="/Caretaker/Update/@Model.CaretakerId" method="POST">
+
+    <div>
+        <label>Last Name:</label> <input type="text" name="CaretakerLastName" value="@Model.CaretakerLastName" />
+    </div>
+    <div>
+        <label> First Name:</label> <input type="text" name="CaretakerFirstName" value="@Model.CaretakerFirstName" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Caretaker" />
+
+    </div>
+</form>

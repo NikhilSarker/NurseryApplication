@@ -1,0 +1,16 @@
+﻿@model NurseryApplication1.Models.CaretakerDto
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>DeleteConfirm</h2>
+
+<h2>Are you sure you want to delete this Caretaker?</h2>
+<a href="/Caretaker/List">Cancel</a>
+<h2>@Model.CaretakerLastName, @Model.CaretakerFirstName</h2>
+
+<form action="/Caretaker/Delete/@Model.CaretakerId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+
+</form>
+

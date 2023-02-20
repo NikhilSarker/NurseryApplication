@@ -1,0 +1,29 @@
+﻿@model NurseryApplication1.Models.TreeDto
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+<a class="navlink" style="color:green" ; href="/Tree/List">Go Back To List </a>
+
+<form action="/Tree/Update/@Model.TreeId" method="POST">
+    <div style="display:none;">
+
+        <input type="text" name="TreeId" value="@Model.TreeId" />
+    </div>
+    <div>
+        <label>Name:</label> <input type="text" name="TreeName" value="@Model.TreeName" />
+    </div>
+    <div>
+        <label>Height (Inches):</label> <input type="number" name="TreeHeight" value="@Model.TreeHeight" />
+    </div>
+    <div>
+        <label>Category :</label> <input type="number" name="CategoryId" value="@Model.CategoryId" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update Tree" />
+
+    </div>
+</form>

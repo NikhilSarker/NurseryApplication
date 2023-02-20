@@ -1,0 +1,14 @@
+﻿@model NurseryApplication1.Models.CaretakerDto
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<nav>
+    <a class="navlink" style="color:green" ; href="/Caretaker/Edit/@Model.CaretakerId">Update </a>
+    <a class="dellink" style="color:red;" href="/Caretaker/DeleteConfirm/@Model.CaretakerId">Delete</a>
+</nav>
+
+<a href="/Caretaker/List">Go back to list</a>
+<h2>@Model.CaretakerFirstName, @Model.CaretakerLastName</h2>
