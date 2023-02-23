@@ -37,6 +37,89 @@ namespace NurseryApplication1.Controllers
             return TreeDtos;
         }
 
+
+        // GET: api/TreeData/ListTreesForCategory
+        [HttpGet]
+        public IEnumerable<TreeDto> ListTreesForCategory(int id)
+        {
+            List<Tree> Trees = db.Trees.Where(t=>t.CategoryId==id).ToList();
+            List<TreeDto> TreeDtos = new List<TreeDto>();
+
+            Trees.ForEach(t => TreeDtos.Add(new TreeDto()
+            {
+                TreeId = t.TreeId,
+                TreeName = t.TreeName,
+                TreeHeight = t.TreeHeight,
+                CategoryName = t.Category.CategoryName
+
+            }));
+
+
+            return TreeDtos;
+        }
+
+        // GET: api/TreeData/ListTreesForCaretaker/1
+        [HttpGet]
+        public IEnumerable<TreeDto> ListTreesForCaretaker(int id)
+        {
+            List<Tree> Trees = db.Trees.Where(
+                t => t.Caretakers.Any(
+                c=>c.CaretakerId==id
+                
+                )).ToList();
+            List<TreeDto> TreeDtos = new List<TreeDto>();
+
+            Trees.ForEach(t => TreeDtos.Add(new TreeDto()
+            {
+                TreeId = t.TreeId,
+                TreeName = t.TreeName,
+                TreeHeight = t.TreeHeight,
+                CategoryName = t.Category.CategoryName
+
+            }));
+
+
+            return TreeDtos;
+        }
+
+
+        [HttpPost]
+        [Route("api/TreeData/AssociateTreeWithCaretaker/{treeid}/{caretakerid}")]
+        public IHttpActionResult AssociateTreeWithCaretaker(int treeid, int caretakerid)
+        {
+            Tree SelectedTree = db.Trees.Include(t=>t.Caretakers).Where(t=>t.TreeId ==treeid).FirstOrDefault();
+            Caretaker SelectedCaretaker = db.Caretakers.Find(caretakerid);
+
+            if (SelectedTree== null || SelectedCaretaker == null)
+            {
+                return NotFound();
+            }
+            SelectedTree.Caretakers.Add(SelectedCaretaker);
+            db.SaveChanges();
+
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [Route("api/TreeData/UnAssociateTreeWithCaretaker/{treeid}/{caretakerid}")]
+        public IHttpActionResult UnAssociateTreeWithCaretaker(int treeid, int caretakerid)
+        {
+            Tree SelectedTree = db.Trees.Include(t => t.Caretakers).Where(t => t.TreeId == treeid).FirstOrDefault();
+            Caretaker SelectedCaretaker = db.Caretakers.Find(caretakerid);
+
+            if (SelectedTree == null || SelectedCaretaker == null)
+            {
+                return NotFound();
+            }
+            SelectedTree.Caretakers.Remove(SelectedCaretaker);
+            db.SaveChanges();
+
+
+            return Ok();
+        }
+
+
         // GET: api/TreeData/FindTree/5
         [HttpGet]
         [ResponseType(typeof(Tree))]

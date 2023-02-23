@@ -1,4 +1,5 @@
 ﻿using NurseryApplication1.Models;
+using NurseryApplication1.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,6 +45,8 @@ namespace NurseryApplication1.Controllers
         // GET: Category/Details/5
         public ActionResult Details(int id)
         {
+            DetailsCategory ViewModel = new DetailsCategory();
+
             //Objective: Communicate with our tree data api to retrieve one tree
             //Curl https://localhost:44307/api/categorydata/findcategory/{id}
 
@@ -53,12 +56,20 @@ namespace NurseryApplication1.Controllers
             //Debug.WriteLine("The respose code is ");
             //Debug.WriteLine(response.StatusCode);
 
-            CategoryDto selectedcategory = response.Content.ReadAsAsync<CategoryDto>().Result;
+            CategoryDto Selectedcategory = response.Content.ReadAsAsync<CategoryDto>().Result;
             //Debug.WriteLine("Tree received : ");
             //Debug.WriteLine(selectedtree.TreeName);
 
+            ViewModel.SelectedCategory = Selectedcategory;
 
-            return View(selectedcategory);
+            url = "treedata/listtreesforcategory/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<TreeDto> RelatedTrees = response.Content.ReadAsAsync<IEnumerable<TreeDto>>().Result;
+
+            ViewModel.RelatedTrees = RelatedTrees;
+
+
+            return View(ViewModel);
         }
         public ActionResult Error()
         {

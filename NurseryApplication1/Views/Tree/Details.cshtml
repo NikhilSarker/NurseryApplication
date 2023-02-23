@@ -1,5 +1,5 @@
 ﻿
-@model NurseryApplication1.Models.TreeDto
+@model NurseryApplication1.Models.ViewModels.DetailsTree
 @{
     ViewBag.Title = "Details";
 }
@@ -8,11 +8,35 @@
 
 
 <nav>
-    <a class="navlink" style="color:green" ; href="/Tree/Edit/@Model.TreeId">Update </a>
-    <a class="dellink" style="color:red;" href="/Tree/DeleteConfirm/@Model.TreeId">Delete</a>
+    <a class="navlink" style="color:green" ; href="/Tree/Edit/@Model.SelectedTree.TreeId">Update </a>
+    <a class="dellink" style="color:red;" href="/Tree/DeleteConfirm/@Model.SelectedTree.TreeId">Delete</a>
 </nav>
 
 <a href="/Tree/List">Go back to list</a>
-<h2>@Model.TreeName</h2>
-<div>Height: @Model.TreeHeight inches</div>
-<div>Categories: @Model.CategoryName</div>
+<h2>@Model.SelectedTree.TreeName</h2>
+<div>Height: @Model.SelectedTree.TreeHeight inches</div>
+<div>Categories: @Model.SelectedTree.CategoryName</div>
+
+<div>
+    <h2>Caretaker Responsible for @Model.SelectedTree.TreeName</h2>
+    @foreach(var caretaker in Model.ResponsibleCaretakers)
+            {
+              <a href="/caretaker/Details/@caretaker.CaretakerId">@caretaker.CaretakerFirstName @caretaker.CaretakerLastName</a> 
+              <a style="color:red;" href="/Tree/Unassociate/@Model.SelectedTree.TreeId?CaretakerId=@caretaker.CaretakerId">[X]</a><br />
+            }
+
+
+    <div>
+        <h4>Add new Caretaker to take care of @Model.SelectedTree.TreeName</h4>
+        <form method="post" action="/Tree/Associate/@Model.SelectedTree.TreeId">
+            <select name="CaretakerId">
+                @foreach (var caretaker in Model.AvailableCaretakers)
+                {
+                    <option value="@caretaker.CaretakerId">@caretaker.CaretakerFirstName @caretaker.CaretakerLastName</option>
+                }
+            </select>
+            <input type="submit" value="Associate Caretaker" />
+        </form>
+    </div>
+
+</div>

@@ -36,6 +36,53 @@ namespace NurseryApplication1.Controllers
 
             return CaretakerDtos;
         }
+        // GET: api/CaretakerData/ListCaretakersForTree/1
+        [HttpGet]
+        public IEnumerable<CaretakerDto> ListCaretakersForTree(int id)
+        {
+            List<Caretaker> Caretakers = db.Caretakers.Where(
+                c=>c.Trees.Any(
+                    t=>t.TreeId==id)
+                
+                ).ToList();
+            List<CaretakerDto> CaretakerDtos = new List<CaretakerDto>();
+
+            Caretakers.ForEach(c => CaretakerDtos.Add(new CaretakerDto()
+            {
+                CaretakerId = c.CaretakerId,
+                CaretakerLastName = c.CaretakerLastName,
+                CaretakerFirstName = c.CaretakerFirstName
+                //CategoryName = t.Category.CategoryName
+
+            }));
+
+
+            return CaretakerDtos;
+        }
+
+        // GET: api/CaretakerData/ListCaretakersNotCaringForTree/1
+        [HttpGet]
+        public IEnumerable<CaretakerDto> ListCaretakersNotCaringForTree(int id)
+        {
+            List<Caretaker> Caretakers = db.Caretakers.Where(
+                c => !c.Trees.Any(
+                    t => t.TreeId == id)
+
+                ).ToList();
+            List<CaretakerDto> CaretakerDtos = new List<CaretakerDto>();
+
+            Caretakers.ForEach(c => CaretakerDtos.Add(new CaretakerDto()
+            {
+                CaretakerId = c.CaretakerId,
+                CaretakerLastName = c.CaretakerLastName,
+                CaretakerFirstName = c.CaretakerFirstName
+                //CategoryName = t.Category.CategoryName
+
+            }));
+
+
+            return CaretakerDtos;
+        }
 
 
         // GET: api/CaretakerData/FindCaretaker/5

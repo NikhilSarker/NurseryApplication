@@ -1,4 +1,4 @@
-﻿@model NurseryApplication1.Models.TreeDto
+﻿@model NurseryApplication1.Models.ViewModels.UpdateTree
 @{
     ViewBag.Title = "Edit";
 }
@@ -7,23 +7,31 @@
 
 <a class="navlink" style="color:green" ; href="/Tree/List">Go Back To List </a>
 
-<form action="/Tree/Update/@Model.TreeId" method="POST">
+<form action="/Tree/Update/@Model.SelectedTree.TreeId" method="POST">
     <div style="display:none;">
+        @* pass through the tree Id*@
 
-        <input type="text" name="TreeId" value="@Model.TreeId" />
+        <input type="text" name="TreeId" value="@Model.SelectedTree.TreeId" />
     </div>
     <div>
-        <label>Name:</label> <input type="text" name="TreeName" value="@Model.TreeName" />
+        <label>Name:</label> <input type="text" name="TreeName" value="@Model.SelectedTree.TreeName" />
     </div>
     <div>
-        <label>Height (Inches):</label> <input type="number" name="TreeHeight" value="@Model.TreeHeight" />
+        <label>Height (Inches):</label> <input type="number" name="TreeHeight" value="@Model.SelectedTree.TreeHeight" />
     </div>
     <div>
-        <label>Category :</label> <input type="number" name="CategoryId" value="@Model.CategoryId" />
+        <label>Category :</label>
+        <select name="CategoryId">
+            @foreach (var category in Model.CategoriesOptions)
+            {
+                <option value="@category.CategoryId"> @category.CategoryName </option>
+
+            }
+        </select>
     </div>
 
     <div>
-        <input type="submit" value="Update Tree" />
+        <input type="submit" value="Update Tree"/>
 
     </div>
 </form>

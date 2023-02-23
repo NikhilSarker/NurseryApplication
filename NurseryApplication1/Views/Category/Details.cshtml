@@ -1,13 +1,21 @@
-﻿@model NurseryApplication1.Models.CategoryDto
+﻿@model NurseryApplication1.Models.ViewModels.DetailsCategory
 @{
     ViewBag.Title = "Details";
 }
 
 <h2>Details</h2>
 <nav>
-    <a class="navlink" style="color:green" ; href="/Category/Edit/@Model.CategoryId">Update </a>
-    <a class="dellink" style="color:red;" href="/Category/DeleteConfirm/@Model.CategoryId">Delete</a>
+    <a class="navlink" style="color:green" ; href="/Category/Edit/@Model.SelectedCategory.CategoryId">Update </a>
+    <a class="dellink" style="color:red;" href="/Category/DeleteConfirm/@Model.SelectedCategory.CategoryId">Delete</a>
 </nav>
 
 <a href="/Category/List">Go back to list</a>
-<h2>@Model.CategoryName</h2>
+<h2>@Model.SelectedCategory.CategoryName</h2>
+
+<div style="margin-top:100px;">
+    <h3>Trees Related to this Category</h3>
+    @foreach (var tree in Model.RelatedTrees)
+            {
+                <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a>
+            }
+</div>

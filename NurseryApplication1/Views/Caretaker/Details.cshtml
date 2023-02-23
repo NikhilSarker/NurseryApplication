@@ -1,4 +1,4 @@
-﻿@model NurseryApplication1.Models.CaretakerDto
+﻿@model NurseryApplication1.Models.ViewModels.DetailsCaretaker
 @{
     ViewBag.Title = "Details";
 }
@@ -6,9 +6,17 @@
 <h2>Details</h2>
 
 <nav>
-    <a class="navlink" style="color:green" ; href="/Caretaker/Edit/@Model.CaretakerId">Update </a>
-    <a class="dellink" style="color:red;" href="/Caretaker/DeleteConfirm/@Model.CaretakerId">Delete</a>
+    <a class="navlink" style="color:green" ; href="/Caretaker/Edit/@Model.SelectedCaretaker.CaretakerId">Update </a>
+    <a class="dellink" style="color:red;" href="/Caretaker/DeleteConfirm/@Model.SelectedCaretaker.CaretakerId">Delete</a>
 </nav>
 
 <a href="/Caretaker/List">Go back to list</a>
-<h2>@Model.CaretakerFirstName, @Model.CaretakerLastName</h2>
+<h2>@Model.SelectedCaretaker.CaretakerFirstName, @Model.SelectedCaretaker.CaretakerLastName</h2>
+
+<div>
+    <h3>Responsible for:</h3>
+    @foreach (var tree in Model.KeptTrees)
+            {
+              <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a> <br/>
+            }
+</div>

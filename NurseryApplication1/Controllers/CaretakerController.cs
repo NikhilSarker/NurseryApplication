@@ -1,5 +1,6 @@
 ﻿using NurseryApplication1.Migrations;
 using NurseryApplication1.Models;
+using NurseryApplication1.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,6 +46,9 @@ namespace NurseryApplication1.Controllers
         // GET: Caretaker/Details/5
         public ActionResult Details(int id)
         {
+
+            DetailsCaretaker ViewModel = new DetailsCaretaker();
+
             //Objective: Communicate with our tree data api to retrieve one tree
             //Curl https://localhost:44307/api/caretakerdata/findcaretaker/{id}
 
@@ -54,12 +58,22 @@ namespace NurseryApplication1.Controllers
             //Debug.WriteLine("The respose code is ");
             //Debug.WriteLine(response.StatusCode);
 
-            CaretakerDto selectedcaretaker = response.Content.ReadAsAsync<CaretakerDto>().Result;
+            CaretakerDto Selectedcaretaker = response.Content.ReadAsAsync<CaretakerDto>().Result;
             //Debug.WriteLine("Tree received : ");
             //Debug.WriteLine(selectedtree.TreeName);
 
+            ViewModel.SelectedCaretaker = Selectedcaretaker;
 
-            return View(selectedcaretaker);
+
+
+            url = "treedata/ListTreesForCaretaker/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<TreeDto> KeptTrees = response.Content.ReadAsAsync<IEnumerable<TreeDto>>().Result;
+
+
+            ViewModel.KeptTrees = KeptTrees;
+
+            return View(ViewModel);
         }
 
         public ActionResult Error()

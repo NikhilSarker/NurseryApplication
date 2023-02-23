@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<NurseryApplication1.Models.CategoryDto>
 @{
     ViewBag.Title = "Create";
 }
@@ -15,7 +15,14 @@
         <label>Height (Inches):</label> <input type="number" name="TreeHeight" />
     </div>
     <div>
-        <label>Category Id:</label> <input type="number" name="CategoryId" />
+        <label>Category:</label>
+        <select name="CategoryId">
+            @foreach (var category in Model)
+            {
+                <option value="@category.CategoryId">   @category.CategoryName </option>
+
+            }
+        </select>
     </div>
 
     <div>
