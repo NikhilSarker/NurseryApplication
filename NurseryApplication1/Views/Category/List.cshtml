@@ -5,7 +5,7 @@
 
 <h2>List</h2>
 
-<a href="/Category/New">New Category</a>
+<a style="border: 1px solid black; padding: 10px;" href="/Category/New">New Category</a>
 @foreach (var category in Model)
 {
    <h2><a href="/Category/Details/@category.CategoryId">@category.CategoryName</a></h2>

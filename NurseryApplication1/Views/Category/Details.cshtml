@@ -5,17 +5,18 @@
 
 <h2>Details</h2>
 <nav>
-    <a class="navlink" style="color:green" ; href="/Category/Edit/@Model.SelectedCategory.CategoryId">Update </a>
-    <a class="dellink" style="color:red;" href="/Category/DeleteConfirm/@Model.SelectedCategory.CategoryId">Delete</a>
+    <a class="navlink" style="border: 1px solid black; padding: 10px; color:green; margin:10px;"  ; href="/Category/Edit/@Model.SelectedCategory.CategoryId">Update </a>
+    <a class="dellink" style="border: 1px solid black; padding: 10px; color:red; margin:10px;"  href="/Category/DeleteConfirm/@Model.SelectedCategory.CategoryId">Delete</a>
 </nav>
+<nav style="margin-top:30px; margin-left:10px;">
+    <a style=" border: 1px solid black; padding: 10px;"  href="/Category/List">Go back to list</a>
+    </nav>
+    <h2>@Model.SelectedCategory.CategoryName</h2>
 
-<a href="/Category/List">Go back to list</a>
-<h2>@Model.SelectedCategory.CategoryName</h2>
-
-<div style="margin-top:100px;">
-    <h3>Trees Related to this Category</h3>
-    @foreach (var tree in Model.RelatedTrees)
-            {
-                <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a>
-            }
-</div>
+    <div style="margin-top:100px;">
+        <h3>Trees Related to this Category</h3>
+        @foreach (var tree in Model.RelatedTrees)
+        {
+            <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a>
+        }
+    </div>

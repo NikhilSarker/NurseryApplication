@@ -8,22 +8,23 @@
 
 
 <nav>
-    <a class="navlink" style="color:green" ; href="/Tree/Edit/@Model.SelectedTree.TreeId">Update </a>
-    <a class="dellink" style="color:red;" href="/Tree/DeleteConfirm/@Model.SelectedTree.TreeId">Delete</a>
+    <a class="navlink" style="border: 1px solid black; padding: 10px; color:green; margin:10px;" href="/Tree/Edit/@Model.SelectedTree.TreeId">Update </a>
+    <a class="dellink" style="border: 1px solid black; padding: 10px; color: red; margin: 10px;" href="/Tree/DeleteConfirm/@Model.SelectedTree.TreeId">Delete</a>
 </nav>
-
-<a href="/Tree/List">Go back to list</a>
+<nav  style="margin-top:30px; margin-left:10px;">
+    <a style=" border: 1px solid black; padding: 10px;" href="/Tree/List">Go back to list</a>
+</nav>
 <h2>@Model.SelectedTree.TreeName</h2>
 <div>Height: @Model.SelectedTree.TreeHeight inches</div>
 <div>Categories: @Model.SelectedTree.CategoryName</div>
 
 <div>
     <h2>Caretaker Responsible for @Model.SelectedTree.TreeName</h2>
-    @foreach(var caretaker in Model.ResponsibleCaretakers)
-            {
-              <a href="/caretaker/Details/@caretaker.CaretakerId">@caretaker.CaretakerFirstName @caretaker.CaretakerLastName</a> 
-              <a style="color:red;" href="/Tree/Unassociate/@Model.SelectedTree.TreeId?CaretakerId=@caretaker.CaretakerId">[X]</a><br />
-            }
+    @foreach (var caretaker in Model.ResponsibleCaretakers)
+    {
+        <a href="/caretaker/Details/@caretaker.CaretakerId">@caretaker.CaretakerFirstName @caretaker.CaretakerLastName</a>
+        <a style="color:red;" href="/Tree/Unassociate/@Model.SelectedTree.TreeId?CaretakerId=@caretaker.CaretakerId">[X]</a><br />
+    }
 
 
     <div>

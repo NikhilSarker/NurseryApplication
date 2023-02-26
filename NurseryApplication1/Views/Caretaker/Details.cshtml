@@ -6,17 +6,18 @@
 <h2>Details</h2>
 
 <nav>
-    <a class="navlink" style="color:green" ; href="/Caretaker/Edit/@Model.SelectedCaretaker.CaretakerId">Update </a>
-    <a class="dellink" style="color:red;" href="/Caretaker/DeleteConfirm/@Model.SelectedCaretaker.CaretakerId">Delete</a>
+    <a class="navlink" style="border: 1px solid black; padding: 10px; color:green; margin:10px;" ; href="/Caretaker/Edit/@Model.SelectedCaretaker.CaretakerId">Update </a>
+    <a class="dellink" style="border: 1px solid black; padding: 10px; color:red; margin:10px;" href="/Caretaker/DeleteConfirm/@Model.SelectedCaretaker.CaretakerId">Delete</a>
 </nav>
+<nav style="margin-top:30px; margin-left:10px;">
+    <a style=" border: 1px solid black; padding: 10px;" href="/Caretaker/List">Go back to list</a>
+    </nav>
+    <h2>@Model.SelectedCaretaker.CaretakerFirstName, @Model.SelectedCaretaker.CaretakerLastName</h2>
 
-<a href="/Caretaker/List">Go back to list</a>
-<h2>@Model.SelectedCaretaker.CaretakerFirstName, @Model.SelectedCaretaker.CaretakerLastName</h2>
-
-<div>
-    <h3>Responsible for:</h3>
-    @foreach (var tree in Model.KeptTrees)
-            {
-              <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a> <br/>
-            }
-</div>
+    <div>
+        <h3>Responsible for:</h3>
+        @foreach (var tree in Model.KeptTrees)
+        {
+            <a href="/Tree/Details/@tree.TreeId">@tree.TreeName</a> <br />
+        }
+    </div>
